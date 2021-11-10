@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+    {% block title %} {{photo.title}} {% endblock %}
+
+    {% block content %}
+ 
+{% if user.is_authenticated%}
+    <div class="container mt-4">
+    <h1>{{photo.title}}</h1>
+        <h5>{{photo.description}}</h5>
+        <img src="{{photo.image.url}}" class="img-fluid rounded shadow" width="800" height="auto" alt="">
+    </div>
+    <div class="container mt-4">
+        <a class="btn btn-primary" href="/k_django/download" download><i class="bi bi-download" style="font-size: 20px;"></i></a>
+        <a class="btn btn-primary" href="{% url 'photo_update' photo.id %}"><i class="bi bi-pencil-fill" style="font-size: 20px;"></i></a>
+        <a class="btn btn-danger" href="{% url 'photo_delete' photo.id %}"><i class="bi bi-trash" style="font-size: 20px;"></i></a>
+    </div>
+{% else %}
+    <div class="container mt-4">
+    <h1> Авторизуйся или войди, чтобы увидеть картинки в лучшем качестве, с возможностью скачать!</h1>
+    <h4>{{photo.title}}</h4>
+        <p>{{photo.description}}</p>
+        <img src="{{photo.image.url}}" class="img-fluid rounded shadow" width="100" height="auto" alt="">
+    </div>
+    <div class="container mt-4">
+        <a class="btn btn-primary" href="{% url 'photo_update' photo.id %}"><i class="bi bi-pencil-fill" style="font-size: 20px;"></i></a>
+        <a class="btn btn-danger" href="{% url 'photo_delete' photo.id %}"><i class="bi bi-trash" style="font-size: 20px;"></i></a>
+    </div>
+{% endif %}
+
+    {% endblock %}
