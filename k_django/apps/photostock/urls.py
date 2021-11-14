@@ -1,14 +1,14 @@
 # app URLs
 
 from django.urls import path
-from . import views
 from .views import (
     PhotoCreateView, 
     PhotoDetailView, 
     PhotoListView, 
     PhotoDeleteView, 
     PhotoUpdateView,
-    PhotoLoginView
+    PhotoLoginView,
+    SignUpView
 )
 
 
@@ -19,5 +19,5 @@ urlpatterns = [
     path('<int:pk>/update/', PhotoUpdateView.as_view(), name='photo_update'),
     path('<int:pk>/delete/', PhotoDeleteView.as_view(), name='photo_delete'),
     path('accounts/login/', PhotoLoginView.as_view(), name='login'),
-    path('accounts/signup/', views.signup, name='signup'),
+    path('accounts/signup/', SignUpView.as_view(), name='signup'),
 ]

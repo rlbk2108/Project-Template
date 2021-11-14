@@ -15,25 +15,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
-
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
-
-
-
 INSTALLED_APPS = [
     #auth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    #some apps
-    'imagekit',
-    'grappelli',
+
+    #djangolibs
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,9 +30,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     #myapp
     'photostock.apps.BlogConfig',
+
+    #somelibs
+    'crispy_forms',
+    'imagekit',
+    'grappelli',
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -149,18 +145,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# AUTH SETTINGS
+# AUTHENTICATION SETTINGS
 ACCOUNT_EMAIL_REQUIRED = True  
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 60
-
-#ACCOUNT_SIGNUP_FORM_CLASS = 'photostock.forms.CustomSignupForm'
-
 SOCIALACCOUNT_AUTO_SIGNUP = False
-
-# config/settings.py
 LOGIN_REDIRECT_URL = '/photos/'
 LOGOUT_REDIRECT_URL = '/photos/'
-ACCOUNT_SIGNUP_REDIRECT_URL = LOGIN_REDIRECT_URL
+ACCOUNT_SIGNUP_REDIRECT_URL = '/photos/'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+#ACCOUNT_SIGNUP_FORM_CLASS = 'photostock.forms.CustomSignupForm'

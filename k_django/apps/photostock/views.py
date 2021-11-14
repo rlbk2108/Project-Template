@@ -1,3 +1,6 @@
+from django.forms import fields
+from django import forms
+from django.forms.models import fields_for_model
 from django.http import request
 from django.shortcuts import get_object_or_404, render, redirect, HttpResponseRedirect
 from .models import Photo
@@ -6,8 +9,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.views import LoginView, LogoutView
-from .forms import PhotoForm, CustomSignupForm
-
+from django.views import generic
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CustomUserCreationForm
 
 
 
@@ -49,16 +53,19 @@ class PhotoLogoutView(LogoutView):
     model = Photo
     template_name = 'registration/account_logout.html'
 
-def signup(self, request, user, form):
-    if request.method == 'POST':
-        form = CustomSignupForm(request.POST)
-        if form.is_valid():
-            user.first_name = self.cleaned_data['first_name']
-            user.last_name = self.cleaned_data['last_name']
-            user.gender = self.cleaned_data['gender']
+class SignUpView(generic.CreateView):
+    form_class = CustomUserCreationForm
+    success_url = reverse_lazy('photo_list')
+    template_name = 'registration/signup.html'
 
-            user.save()
-
-    else:
-        form = CustomSignupForm()
-    return render(request, 'signup.html', {'form': form})
+    def register(request):  
+        if request.POST == 'POST':  
+            form = CustomUserCreationForm()  
+            if form.is_valid():  
+                form.save()  
+        else:  
+            form = CustomUserCreationForm()  
+        context = {  
+            'form':form  
+        }  
+        return render(request, 'signup.html', context)  
