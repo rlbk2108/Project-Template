@@ -8,7 +8,14 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView
 from django.views.generic.edit import UpdateView, DeleteView
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import (LoginView, 
+                                       LogoutView, 
+                                       PasswordChangeView, 
+                                       PasswordChangeDoneView,
+                                       PasswordResetView,
+                                       PasswordResetConfirmView,
+                                       PasswordResetCompleteView,
+                                       PasswordResetDoneView)
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomUserCreationForm
@@ -51,11 +58,11 @@ class PhotoLoginView(LoginView):
 
 class PhotoLogoutView(LogoutView):
     model = Photo
-    template_name = 'registration/account_logout.html'
+    template_name = 'registration/logout.html'
 
 class SignUpView(generic.CreateView):
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('photo_list')
+    success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
     def register(request):  
@@ -69,3 +76,24 @@ class SignUpView(generic.CreateView):
             'form':form  
         }  
         return render(request, 'signup.html', context)  
+
+class AccountPassChange(PasswordChangeView):
+    template_name = 'registration/password_change.html'
+
+class AccountPassChangeDone(PasswordChangeDoneView):
+    pass
+
+class AccountPassReset(PasswordResetView):
+    pass
+
+class AccountPassResetConfirm(PasswordResetConfirmView):
+    pass
+
+class AccountPassChange(PasswordChangeView):
+    pass
+
+class AccountPassChange(PasswordChangeView):
+    pass
+
+class AccountPassChange(PasswordChangeView):
+    pass

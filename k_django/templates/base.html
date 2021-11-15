@@ -32,13 +32,14 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <p>Привет {{ user.username }} </p>
+          <p>Привет <strong>{{ user.username }}</strong> </p>
           <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Выход</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Личный кабинет</a>
         </li>
       </ul>
     </div>
     {% else %}
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mb-2 mb-lg">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Вход</a>

@@ -22,6 +22,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
 
+    #somelibs
+    'crispy_forms',
+    'imagekit',
+    'grappelli',
+
     #djangolibs
     'django.contrib.sites',
     'django.contrib.admin',
@@ -33,11 +38,6 @@ INSTALLED_APPS = [
 
     #myapp
     'photostock.apps.BlogConfig',
-
-    #somelibs
-    'crispy_forms',
-    'imagekit',
-    'grappelli',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -154,11 +154,10 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 60
 SOCIALACCOUNT_AUTO_SIGNUP = False
 LOGIN_REDIRECT_URL = '/photos/'
 LOGOUT_REDIRECT_URL = '/photos/'
-ACCOUNT_SIGNUP_REDIRECT_URL = '/photos/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/photos/accounts/login/'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-#ACCOUNT_SIGNUP_FORM_CLASS = 'photostock.forms.CustomSignupForm'
