@@ -3,7 +3,7 @@ from django import forms
 from django.forms.models import fields_for_model
 from django.http import request
 from django.shortcuts import get_object_or_404, render, redirect, HttpResponseRedirect
-from .models import Photo
+from .models import Warehouse
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView
@@ -23,41 +23,41 @@ from .forms import CustomUserCreationForm
 
 
 class PhotoListView(ListView):
-    model = Photo
+    model = Warehouse
     context_object_name = 'photos'
     template_name = 'photostock/photo_list.html'
 
 class PhotoDetailView(DetailView):
-    model = Photo
+    model = Warehouse
     context_object_name = 'photo'
     template_name = 'photostock/photo_detail.html'
 
 class PhotoCreateView(CreateView):
-    model = Photo
+    model = Warehouse
     context_object_name = 'photo'
-    fields = ['title', 'description', 'image', 'price', 'currency']
+    fields = ['product_name', 'product_number']
     success_url = reverse_lazy('photo_list')
     template_name = 'photostock/photo_form.html'
 
 class PhotoUpdateView(UpdateView):
-    model = Photo
-    fields = ['title', 'image', 'description', 'price', 'currency']
+    model = Warehouse
+    fields = ['product_name', 'product_number']
     context_object_name = 'photo'
     success_url = reverse_lazy('photo_list')
     template_name = 'photostock/photo_update.html'
 
 class PhotoDeleteView(DeleteView):
-    model = Photo
+    model = Warehouse
     context_object_name = 'photo'
     success_url = reverse_lazy('photo_list')
     template_name = 'photostock/photo_delete.html' 
 
 class PhotoLoginView(LoginView):
-    model = Photo
+    model = Warehouse
     template_name = 'registration/login.html'
 
 class PhotoLogoutView(LogoutView):
-    model = Photo
+    model = Warehouse
     template_name = 'registration/logout.html'
 
 class SignUpView(generic.CreateView):
