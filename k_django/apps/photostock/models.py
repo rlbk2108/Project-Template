@@ -10,6 +10,7 @@ PRICE = (
 
 class Photo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    email = models.EmailField('Почта', max_length=100, default=user)
     title = models.CharField('Заголовок', max_length=100)
     image = models.ImageField('Картинка', upload_to='media/')
     description = models.TextField('Описание')
