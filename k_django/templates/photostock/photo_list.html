@@ -11,7 +11,7 @@
     
     <div class="container mt-4">
     {% for photo in photos %}
-      <a href="{% url 'photo_detail' photo.id  %}"><img src="{{photo.image.url}}" class="img-fluid rounded shadow" width="270" height="400" alt=""></a>
+      <a href="{% url 'photo_detail' photo.id  %}"></a>
     {% endfor %}
     </div>
 

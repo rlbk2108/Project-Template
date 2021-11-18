@@ -4,6 +4,7 @@ from . import views
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import path
 from .views import (
+<<<<<<< HEAD
     password_reset_request,
     AccountPassChange,
     AccountPassChangeDone,
@@ -11,6 +12,9 @@ from .views import (
     AccountPassResetConfirm,
     AccountPassResetComplete,
     AccountPassResetDone,
+=======
+    PasswordChangeView,
+>>>>>>> 017fc8feb087caab074262456c3bca2009da94bd
     PhotoCreateView, 
     PhotoDetailView, 
     PhotoListView, 

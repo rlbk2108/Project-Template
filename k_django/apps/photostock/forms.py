@@ -1,6 +1,6 @@
 import unicodedata
 from django.forms import fields
-from .models import Photo
+from .models import Warehouse
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
@@ -16,8 +16,8 @@ from collections import OrderedDict
 class PhotoForm(forms.ModelForm):
 
     class Meta:
-        model = Photo
-        fields = ('title', 'image', 'price', 'currency', 'description')
+        model = Warehouse
+        fields = ('product_name', 'product_number')
 
 
 class UsernameField(forms.CharField):
